@@ -17,9 +17,35 @@ public class BookmarkDAO {
 		conn = new Conexao().abrirConexao();
 	}
 	
+	public static void main(String[] args) {
+		BookmarkDAO dao = new BookmarkDAO();
+		Bookmark bookmark = new Bookmark("maria", "bolo", 4);
+		dao.atualizar(bookmark);
+	}
+	
+	public boolean atualizar(Bookmark bookmark){
+		String sql = "update bookmark " +
+				"set usuario= ?, descricao = ?" +
+				"where id = ?";
+		try {
+			pstm = conn.prepareStatement(sql);
+			
+			pstm.setString(1, bookmark.getUsuario());
+			pstm.setString(2, bookmark.getDescricao());
+			pstm.setInt(3, bookmark.getId());
+			
+			return pstm.executeUpdate() > 0;
+			
+		} catch (SQLException e) {
+			System.out.println("Erro na inserção "+ e.getMessage());   
+		}
+		return false;
+	}
+	
+	
 	public boolean salvar(Bookmark bookmark){
-		
-		String sql = "insert into bookmark (usuario, url, descricao)" +
+		String sql = "insert into bookmark " +
+				"(usuario, url, descricao)" +
 				"values (?,?,?)";
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -31,10 +57,8 @@ public class BookmarkDAO {
 			return pstm.executeUpdate() > 0;
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Erro na inserção "+ e.getMessage());   
 		}
-		
 		return false;
 	}
-	
 }

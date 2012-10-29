@@ -12,8 +12,8 @@ public class BookmarkDAOTest {
 	@Test
 	public void testSalvar() {
 		Bookmark bookmark = new Bookmark();
-		bookmark.setDescricao("meu blog");
-		bookmark.setUrl("edveloso.wordpress.com");
+		bookmark.setDescricao("meu email");
+		bookmark.setUrl("edveloso@gmail.com");
 		bookmark.setUsuario("edveloso");
 		
 		Assert.assertTrue(dao.salvar(bookmark));

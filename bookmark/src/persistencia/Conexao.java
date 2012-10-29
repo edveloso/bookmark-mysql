@@ -29,7 +29,7 @@ public class Conexao {
 			
 			//Método estático que pega o Driver e se coneta ao banco
 			//passando as três informações necessárias
-			conn = DriverManager.getConnection(url, user, password);
+	conn = DriverManager.getConnection(url, user, password);
 			
 			//caso chegue nesta linha foi realizada a conexão com sucesso
 			System.out.println("Conexão realizada com sucesso...");  
